@@ -1,0 +1,22 @@
+package main
+
+import "github.com/gin-gonic/gin"
+
+func randName(name string) string {
+    names := [
+        "Tony",
+        "Andrew",
+        "John",
+    ]
+	return "Hi, " + names
+}
+
+func main() {
+	r := gin.Default()
+	r.GET("/ping", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": randName("Guy"),
+		})
+	})
+	r.Run(":8888") // listen and serve on 0.0.0.0:8080
+}
